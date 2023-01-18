@@ -27,7 +27,9 @@ add_library(zstr::zstr ALIAS zstr)
 # -- set target properties
 
 target_include_directories(zstr INTERFACE "${PROJECT_SOURCE_DIR}/src")
-target_link_libraries(zstr INTERFACE ZLIB::ZLIB)
+if (NOT MSVC)
+    target_link_libraries(zstr INTERFACE ZLIB::ZLIB)
+endif()
 target_compile_features(zstr INTERFACE cxx_std_11) # require c++11 flag
 
 # -- set cache variables
